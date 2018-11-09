@@ -1,9 +1,11 @@
-var express = require("express");
+const express = require("express");
+const app = express();
 
-var app = express();
+let htmlRoute  = require("./app/routing/htmlRoutes");
+require("./app/routing/htmlRoutes")(app);
 
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function(){
-    
+    console.log("Server running");
 })
