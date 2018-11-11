@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--jQuery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <title>Survey</title>
 </head>
@@ -23,7 +27,7 @@
                     <label for="name">Your Name</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="name" type="text" class="validate">
+                    <input id="photo" type="text" class="validate">
                     <label for="name">Picture of You</label>
                 </div>
             </div>
@@ -32,7 +36,7 @@
         <div class="divider"></div>
 
         <div class="row center-align">
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q1">
                 <h5>I believe in the importance of art and music.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -43,7 +47,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q2">
                 <h5>I enjoy being spontaneous and unpredictable.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -54,7 +58,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q3">
                 <h5>I consider myself more of a listener than a talker.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -65,7 +69,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q4">
                 <h5>I'd rather make a lot of money than have a job that makes me happy.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -76,7 +80,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q5">
                 <h5>It's more important to be honest than kind.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -87,7 +91,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q6">
                 <h5>My home and work environments are quite tidy.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -98,7 +102,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q7">
                 <h5>I find it easy to stay relaxed even when there is some pressure.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -109,7 +113,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q8">
                 <h5>I do not let other people influence my actions.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -120,7 +124,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q9">
                 <h5>Heart is more important than logic when making important decisions.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -131,7 +135,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6 offset-s3 selection" id="q10">
                 <h5>I don't like to draw attention to myself.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -145,7 +149,8 @@
         </div>
 
         <div class="container center-align">
-            <button href="#modal" class="btn-large waves-effect waves-light hoverable align-right modal-trigger" type="submit" name="action">Submit
+            <button href="" class="btn-large waves-effect waves-light hoverable align-right modal-trigger" id="submitBtn"
+                type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>
         </div>
@@ -164,17 +169,89 @@
     </div>
 
 
-    <!--jQuery  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('.modal').modal();
+            // $('.modal').modal();
             $('select').formSelect();
+
+
+            $("#submitBtn").on("click", function () {
+
+                //form validation
+                function validateForm() {
+
+                    let isValid = true;
+
+                    $(".validate").each(function () {
+                        if ($(this).val() === "") {
+                        isValid = false;
+                        }
+                    });
+
+                    $(".browser-default").each(function () {
+                        if ($(this).val() === "") {
+                        isValid = false;
+                        }
+                    });
+
+                    return isValid;
+                }
+
+                if (validateForm() === true) {
+
+                    let userData = {
+                        name: $("#name").val().trim(),
+                        photo: $("#photo").val().trim(),
+                        scores: [
+                            $("#q1").val(),
+                            $("#q2").val(),
+                            $("#q3").val(),
+                            $("#q4").val(),
+                            $("#q5").val(),
+                            $("#q6").val(),
+                            $("#q7").val(),
+                            $("#q8").val(),
+                            $("#q9").val(),
+                            $("#q10").val()
+                        ]
+                    }
+
+                    let currentURL = window.location.orgin;
+
+                    $.post(currentURL + "/api/friends", userData, function (data) {
+
+                        $("#matchName").text(data.name);
+                        $("#matchPic").attr("src", data.photo);
+
+                    });
+                    
+                    //opens modal with results
+                    $("#modal").modal();
+
+                    //clears form after submission
+                    $("#name").val("");
+                    $("#photo").val("");
+                    $("#q1").val("");
+                    $("#q2").val("");
+                    $("#q3").val("");
+                    $("#q4").val("");
+                    $("#q5").val("");
+                    $("#q6").val("");
+                    $("#q7").val("");
+                    $("#q8").val("");
+                    $("#q9").val("");
+                    $("#q10").val("");
+
+                } else {
+                    M.toast({html: "Please fill out all fields before submitting."});
+                }
+            })
+
         });
+
+
     </script>
 
 </body>
