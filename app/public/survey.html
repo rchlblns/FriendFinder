@@ -41,7 +41,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>I enjoy being spontaneous and unpredictable.</h5>
@@ -52,7 +52,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>I consider myself more of a listener than a talker.</h5>
@@ -63,7 +63,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>I'd rather make a lot of money than have a job that makes me happy.</h5>
@@ -74,7 +74,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>It's more important to be honest than kind.</h5>
@@ -85,7 +85,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>My home and work environments are quite tidy.</h5>
@@ -96,7 +96,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>I find it easy to stay relaxed even when there is some pressure.</h5>
@@ -107,7 +107,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>I do not let other people influence my actions.</h5>
@@ -118,7 +118,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>Heart is more important than logic when making important decisions.</h5>
@@ -129,7 +129,7 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
             <div class="input-field col s6 offset-s3">
                 <h5>I don't like to draw attention to myself.</h5>
@@ -140,26 +140,40 @@
                     <option value="3">3</option>
                     <option value="3">4</option>
                     <option value="3">5 - Strongly Agree</option>
-                  </select>
+                </select>
             </div>
         </div>
-        
+
         <div class="container center-align">
-            <button class="btn-large waves-effect waves-light hoverable align-right" type="submit" name="action">Submit
+            <button href="#modal" class="btn-large waves-effect waves-light hoverable align-right modal-trigger" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content center-align">
+            <h4>Your Best Match</h4>
+            <h5 class="matchName"></h5>
+            <img id="matchPic" src="" alt="">
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
 
 
+    <!--jQuery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script type = "text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems, options);
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.modal').modal();
+            $('select').formSelect();
         });
     </script>
 
