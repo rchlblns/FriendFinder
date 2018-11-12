@@ -10,38 +10,42 @@ module.exports = function(app){
     //API POST request
     app.post("/api/friends", function(req,res){
 
-        //variables to store new user information from POST request
-        let newFriend = req.body;
-        let newScores = req.body.scores;
-        let scoresArray = [];
-        let friendCount = 0;
-        let bestMatch = 0;
+        console.log(req.body.scores);
 
-        //loops through the list of friends
-        for (let i=0; i<friends.length; i++){
+        let user = req.body;
 
-            let scoreDiff = 0;
-
-            //loops through each friend's scores
-            for (var j = 0; j < newScores.length; j++){
-                scoreDiff += Math.abs(parseInt(friends[i].scores[j]) - parseInt(newScores));
-            }    
-            
-            scoresArray.push(scoreDiff);
-            
+        //parses scores
+        for (let i = 0; i <user.scores.length; i++){
+            user.scores[i] = parseInt(user.scores[i]);
         }
 
-        for (let i = 0; i < scoresArray.length; i++){
-            if (scoresArray[i] <= scoresArray[bestMatch]){
-                bestMatch = i;
+        //
+        let bestfriendIndex = 0;
+        let minDiff = 40;
+
+        //for loop to compare user to array of friends
+        for (let i = 0; i < friends.length; i++){
+            
+            var totalDiff = 0;
+
+            for (let j = 0; j < friends[i].scores.length; j++){
+                let difference = Math.abs(user.scores[j] - friends[i].scores[j]);
+                //difference in score gets added to total difference
+                totalDiff += difference;
+            }
+
+            //if there's a new minimum score, this sets it as the new minimum
+            if (totalDiff < minDiff) {
+                bestfriendIndex = i;
+                minDiff = totalDiff;
             }
         }
 
-        //returns a JSON object with the user's bestMatch
-        res.json(bestMatch);
-
         //adds user data to the friends array
         friends.push(newFriend);
+
+        //returns a JSON object to browser with the user's bestMatch
+        res.json(bestMatch);
 
     });
 }

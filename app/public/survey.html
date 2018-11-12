@@ -175,6 +175,9 @@
 
             $("#submitBtn").on("click", function() {
 
+                event.preventDefault();
+
+                //initializing form select and modal
                 $('select').formSelect();
                 $(".modal").modal();
 
@@ -237,22 +240,22 @@
                     // opens modal with results
                     $(".modal").open();    
                     
-                    //clears form after submission
-                    // $("#name").val("");
-                    // $("#photo").val("");
-                    // $("#q1").val("");
-                    // $("#q2").val("");
-                    // $("#q3").val("");
-                    // $("#q4").val("");
-                    // $("#q5").val("");
-                    // $("#q6").val("");
-                    // $("#q7").val("");
-                    // $("#q8").val("");
-                    // $("#q9").val("");
-                    // $("#q10").val("");
+                    // clears form after submission
+                    $("#name").val("");
+                    $("#photo").val("");
+                    $("#q1").val("");
+                    $("#q2").val("");
+                    $("#q3").val("");
+                    $("#q4").val("");
+                    $("#q5").val("");
+                    $("#q6").val("");
+                    $("#q7").val("");
+                    $("#q8").val("");
+                    $("#q9").val("");
+                    $("#q10").val("");
 
                 } else {
-                    //displays alert 
+                    //displays notification to finish form
                     M.toast({html: "Please fill out all fields before submitting.", classes: "rounded"});
                 }
 
