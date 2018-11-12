@@ -22,11 +22,11 @@
         <div class="row center-align">
             <h1>Tell Us About Yourself</h1>
             <div class="col s12">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <input id="name" type="text" class="validate">
                     <label for="name">Your Name</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <input id="photo" type="text" class="validate">
                     <label for="name">Picture of You</label>
                 </div>
@@ -36,7 +36,7 @@
         <div class="divider"></div>
 
         <div class="row center-align">
-            <div class="input-field col s6 offset-s3 selection" id="q1">
+            <div class="input-field col s6 offset-s3" id="q1">
                 <h5>I believe in the importance of art and music.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -47,7 +47,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q2">
+            <div class="input-field col s6 offset-s3" id="q2">
                 <h5>I enjoy being spontaneous and unpredictable.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -58,7 +58,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q3">
+            <div class="input-field col s6 offset-s3" id="q3">
                 <h5>I consider myself more of a listener than a talker.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -69,7 +69,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q4">
+            <div class="input-field col s6 offset-s3" id="q4">
                 <h5>I'd rather make a lot of money than have a job that makes me happy.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -80,7 +80,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q5">
+            <div class="input-field col s6 offset-s3" id="q5">
                 <h5>It's more important to be honest than kind.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -91,7 +91,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q6">
+            <div class="input-field col s6 offset-s3" id="q6">
                 <h5>My home and work environments are quite tidy.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -102,7 +102,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q7">
+            <div class="input-field col s6 offset-s3" id="q7">
                 <h5>I find it easy to stay relaxed even when there is some pressure.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -113,7 +113,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q8">
+            <div class="input-field col s6 offset-s3" id="q8">
                 <h5>I do not let other people influence my actions.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -124,7 +124,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q9">
+            <div class="input-field col s6 offset-s3" id="q9">
                 <h5>Heart is more important than logic when making important decisions.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -135,7 +135,7 @@
                     <option value="3">5 - Strongly Agree</option>
                 </select>
             </div>
-            <div class="input-field col s6 offset-s3 selection" id="q10">
+            <div class="input-field col s6 offset-s3" id="q10">
                 <h5>I don't like to draw attention to myself.</h5>
                 <select class="browser-default">
                     <option value="" disabled selected>Choose your option</option>
@@ -149,19 +149,18 @@
         </div>
 
         <div class="container center-align">
-            <button href="" class="btn-large waves-effect waves-light hoverable align-right modal-trigger" id="submitBtn"
-                type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
+            <button class="btn-large waves-effect waves-light hoverable align-right modal-trigger" id="submitBtn"
+                type="submit" href="#resultsModal">Submit
             </button>
         </div>
     </div>
 
     <!-- Modal -->
-    <div id="modal" class="modal">
+    <div id="resultsModal" class="modal">
         <div class="modal-content center-align">
-            <h4>Your Best Match</h4>
+            <h4>Your New Best Friend</h4>
             <h5 class="matchName"></h5>
-            <img id="matchPic" src="" alt="">
+            <img id="matchPic" src="" alt="" style="max-width: 500px;">
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
@@ -172,24 +171,26 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function () {
-            // $('.modal').modal();
-            $('select').formSelect();
+        $(document).ready(function () {   
 
+            $("#submitBtn").on("click", function() {
 
-            $("#submitBtn").on("click", function () {
+                $('select').formSelect();
+                $(".modal").modal();
 
                 //form validation
                 function validateForm() {
 
                     let isValid = true;
-
-                    $(".validate").each(function () {
+                    
+                    //if text input is empty
+                    $(".validate").each(function() {
                         if ($(this).val() === "") {
                         isValid = false;
                         }
                     });
-
+                    
+                    //if there are unanswered questions
                     $(".browser-default").each(function () {
                         if ($(this).val() === "") {
                         isValid = false;
@@ -198,10 +199,14 @@
 
                     return isValid;
                 }
+                
+                validateForm();
 
+                //if all form areas are filled out
                 if (validateForm() === true) {
 
-                    let userData = {
+                    //captures submitted values
+                    let newFriendData = {
                         name: $("#name").val().trim(),
                         photo: $("#photo").val().trim(),
                         scores: [
@@ -216,38 +221,43 @@
                             $("#q9").val(),
                             $("#q10").val()
                         ]
-                    }
-
+                    };
+                    
+                    //grabs current URL of website
                     let currentURL = window.location.orgin;
 
-                    $.post(currentURL + "/api/friends", userData, function (data) {
+                    //posts user data to the friends API
+                    $.post(currentURL + "/api/friends", newFriendData, function(data) {
 
                         $("#matchName").text(data.name);
-                        $("#matchPic").attr("src", data.photo);
-
-                    });
+                        $("#matchPic").attr("src", data.profilePic);
                     
-                    //opens modal with results
-                    $("#modal").modal();
+                    });
 
+                    // opens modal with results
+                    $(".modal").open();    
+                    
                     //clears form after submission
-                    $("#name").val("");
-                    $("#photo").val("");
-                    $("#q1").val("");
-                    $("#q2").val("");
-                    $("#q3").val("");
-                    $("#q4").val("");
-                    $("#q5").val("");
-                    $("#q6").val("");
-                    $("#q7").val("");
-                    $("#q8").val("");
-                    $("#q9").val("");
-                    $("#q10").val("");
+                    // $("#name").val("");
+                    // $("#photo").val("");
+                    // $("#q1").val("");
+                    // $("#q2").val("");
+                    // $("#q3").val("");
+                    // $("#q4").val("");
+                    // $("#q5").val("");
+                    // $("#q6").val("");
+                    // $("#q7").val("");
+                    // $("#q8").val("");
+                    // $("#q9").val("");
+                    // $("#q10").val("");
 
                 } else {
-                    M.toast({html: "Please fill out all fields before submitting."});
+                    //displays alert 
+                    M.toast({html: "Please fill out all fields before submitting.", classes: "rounded"});
                 }
-            })
+
+                return false;
+            });
 
         });
 

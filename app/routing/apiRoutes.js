@@ -4,58 +4,44 @@ module.exports = function(app){
 
     //API GET request
     app.get("/api/friends", function(req,res){
-        return res.json(friends);
+        res.json(friends);
     });
 
     //API POST request
     app.post("/api/friends", function(req,res){
-        
-        //this object holds the information of the most compatible friend at the moment
-        let bestMatch = {
-            name: "",
-            photo: "",
-            friendDifference: 100 
-        }
 
         //variables to store new user information from POST request
-        const newFriend = req.body;
-        const newName = newFriend.name;
-        const newPhoto = newFriend.photo;
-        const newScores = newFriend.scores;
-
-        //this variable holds 
-        let totalDifference = 0;
+        let newFriend = req.body;
+        let newScores = req.body.scores;
+        let scoresArray = [];
+        let friendCount = 0;
+        let bestMatch = 0;
 
         //loops through the list of friends
         for (let i=0; i<friends.length; i++){
-            console.log(friends[i].name);
 
-            totalDifference = 0;
+            let scoreDiff = 0;
 
             //loops through each friend's scores
-            for (var j = 0; j < friends[i].scores[j]; j++){
-                totalDifference += Math.abs(parseInt(newScores[j])) - parseInt(friends[i].scores[j]);
+            for (var j = 0; j < newScores.length; j++){
+                scoreDiff += Math.abs(parseInt(friends[i].scores[j]) - parseInt(newScores));
+            }    
+            
+            scoresArray.push(scoreDiff);
+            
+        }
 
-                //if the sum of the new totalDifference is less than the current one
-                if (totalDifference <= bestMatch.friendDifference){
-
-                    //this friend becomes the bestMatch
-                    bestMatch.name = friends[i].name;
-                    bestMatch.photo = friends[i].photo;
-                    bestMatch.friendDifference = totalDifference;
-                } 
+        for (let i = 0; i < scoresArray.length; i++){
+            if (scoresArray[i] <= scoresArray[bestMatch]){
+                bestMatch = i;
             }
         }
 
-        // newFriend.routeName = newFriend.name.replace(/\s+/g,"").toLowerCase();
-
-        console.log(newFriend);
+        //returns a JSON object with the user's bestMatch
+        res.json(bestMatch);
 
         //adds user data to the friends array
         friends.push(newFriend);
-
-        //returns a JSON with the user's bestMatch
-        res.json(newFriend);
 
     });
 }
